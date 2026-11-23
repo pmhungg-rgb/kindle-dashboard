@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 from PIL import Image, ImageDraw, ImageFont
 
 # ---------------------------------------------------------------- cấu hình
-PW, PH = 1236, 1648   # điểm ảnh thật của màn Kindle
+PW, PH = 1072, 1448   # điểm ảnh thật của màn Kindle
 # Phóng to toàn bộ bố cục (chữ + khoảng cách). 1.0 = cỡ gốc, 1.3 = to hơn 30%.
 SCALE = float(os.environ.get("DASH_SCALE", "1.3"))
 W, H = round(PW / SCALE), round(PH / SCALE)   # kích thước "logic" dùng khi bố trí
