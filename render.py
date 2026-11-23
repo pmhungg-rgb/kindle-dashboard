@@ -28,7 +28,7 @@ W, H = round(PW / SCALE), round(PH / SCALE)   # kích thước "logic" dùng khi
 TZ = ZoneInfo(os.environ.get("DASH_TZ", "Asia/Ho_Chi_Minh"))
 # Bỏ qua các lịch có tên trong danh sách này (phân tách bằng dấu phẩy)
 # Bố cục: trabo1 = ngày + thời tiết ở đầu (bản gốc) · trabo2 = bỏ đầu trang, mục Claude to ở trên cùng
-TITLE = os.environ.get("DASH_TITLE") or "Claude's Jimmy"   # tiêu đề bố cục trabo2
+TITLE = os.environ.get("DASH_TITLE") or "F.R.I.D.A.Y"   # tiêu đề bố cục trabo2
 LAYOUT = os.environ.get("DASH_LAYOUT", "dashboardtrabo1").lower().replace("dashboard", "")
 SKIP_CALENDARS = {s.strip() for s in os.environ.get("DASH_SKIP_CALENDARS", "").split(",") if s.strip()}
 
