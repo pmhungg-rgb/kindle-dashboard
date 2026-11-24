@@ -3,10 +3,8 @@ name: Cập nhật dashboard Kindle
 on:
   schedule:
     # Giờ trong cron là UTC (giờ VN = UTC + 7). GitHub có thể chạy trễ.
-    # 8:00–23:45 giờ VN: 15 phút/lần (01:00–16:45 UTC)
-    - cron: "*/15 1-16 * * *"
-    # 0:00 và 4:00 giờ VN: 4 tiếng/lần (17:00, 21:00 UTC)
-    - cron: "0 17,21 * * *"
+    - cron: "7-59/15 1-16 * * *"
+    - cron: "7 17,21 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -23,9 +21,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -54,11 +49,18 @@ jobs:
         run: |
           python render.py --out "_site/${SECRET_PATH:-img}/dashboard.png"
           touch _site/index.html
-          # ảnh mẫu (dữ liệu giả) để minh hoạ, ai cũng xem được
           python render.py --sample sample.json --now "2026-11-06T10:30" --out _site/preview.png
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - id: deploy
         uses: actions/deploy-pages@v4
