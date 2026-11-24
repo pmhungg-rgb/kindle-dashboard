@@ -453,7 +453,7 @@ def _claude_mini(d, x0, y, w, name, v, now, empty=""):
         when = f"{reset_at:%H:%M}" if reset_at.date() == now.date() else f"{THU_NGAN[reset_at.weekday()]} {reset_at:%H:%M}"
         cap = f"đặt lại {when} · {left}"
     else:
-        cap = empty if pct is None else ""
+        cap = empty if pct is None else ("chưa bắt đầu phiên mới" if not pct else "")
     fc = font("Regular", 22)
     d.text((x0, by + bh + 10), fit(d, cap, fc, w), font=fc, fill=MID)
 
